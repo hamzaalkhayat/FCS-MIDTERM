@@ -43,9 +43,35 @@ def Close_Tab():
     else:
         print("Their Is No Tab Open")
           
-def mainMenu():
+
    
+#******************************************************************************************
+
+def Switch_Tab() :
+    print ("Enter An Index To of the tab to switch and display, OtherWise Will switch and display the last opened tab.  ")
+    index =input("Enter Here : ")
     
+    if len(open_tab) > 0:
+       import requests 
+       from bs4 import BeautifulSoup 
+       if index == "":
+          index = len(open_tab) - 1 
+       else:
+          if 0 <= int(index) < len(open_tab) :
+             index=  index
+          else:
+           print("Index Not Valid Please Try Again.")    
+      
+       tab =  open_tab[index]
+       r = requests.get(tab['url'] )
+       if r.status_code == 200:
+          print(BeautifulSoup(r.text, 'html.parser'))
+       else:
+          print("An Error occurred!")
+          
+    else:
+        print("Their Is No Tab Open")   
+def mainMenu():
   choice=-99 # dummy value
   while choice != '9':
        
@@ -67,5 +93,7 @@ def mainMenu():
        
     if choice == '2' :
        Close_Tab()
+    if choice == '3' :
+       Switch_Tab() 
 mainMenu()    
     
