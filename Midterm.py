@@ -1,5 +1,8 @@
-def Open_New_Tab (Order_OpenTabs):
-    Open_Tabs = Order_OpenTabs
+open_tab=[]
+
+
+def Open_New_Tab ():
+    
     title = input("Enter the Title of the website: ")
     url = input("Enter the URL: ")
    
@@ -7,23 +10,45 @@ def Open_New_Tab (Order_OpenTabs):
        print("Title OR Url is Empty Please Try Again ") 
     else:
      check_title = False   
-     for tab in Open_Tabs:
+     for tab in open_tab:
        if  tab["title"] == title :
           check_title = True
      if check_title == True:
-       print("Title ALready exist!! ") 
+        print("Title ALready exist!! ") 
      else:   
-      tab={"title": title, "url": url}
-      Open_Tabs.append(tab)
+      tab = {"title": title, "url": url, "nested_tabs": []}
+      open_tab.append(tab)
       print("Tab "+title+" Opened Successfully.")
-    return Open_Tabs
+  
 
+#*****************************************************************************************
+def Close_Tab():
+    
+    
+    print ("Enter An Index To Close, OtherWise Will Close the last opened tab.  ")
+    index =input("Enter Here : ")
+    
+    if len(open_tab) > 0:
+        
+     if index == "":
+        close_tabs = open_tab.pop() 
+        print("Since No Index Enter The Last Tab Opened Will Closed : "+close_tabs['title'])
+     else:
+       if 0 <= int(index) < len(open_tab) :
+         close_tabs =  open_tab.pop(int(index))
+         print ("Closed Tab IS" +close_tabs['title']+"At Index : " + index )
+       else:
+         print("Index Not Valid Please Try Again.")
+    
+    else:
+        print("Their Is No Tab Open")
+          
 def mainMenu():
-  Order_OpenTabs=[] 
+   
     
   choice=-99 # dummy value
   while choice != '9':
-      
+       
     print("\nMenu:")
     print("1. Open Tab")
     print("2. Close Tab")
@@ -37,7 +62,10 @@ def mainMenu():
     
     choice = input("Enter your choice: ")
     
-    if choice == '1':
-      Order_OpenTabs = Open_New_Tab (Order_OpenTabs)
+    if choice == '1' :
+       Open_New_Tab ()
+       
+    if choice == '2' :
+       Close_Tab()
 mainMenu()    
     
