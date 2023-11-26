@@ -25,7 +25,7 @@ def insertionSort(): #O(n^2)  n length of open_tab List
 
 # These function to add new tab to list 
 def Open_New_Tab ():#O(n) n is length of open_tab List
-    
+ # title should be string and url be like (https://www.google.com)   
    title = (input("Enter the Title of the website: ")).strip()
    url = input("Enter the URL: ")
    Is_String =title.isalpha()
@@ -42,22 +42,25 @@ def Open_New_Tab ():#O(n) n is length of open_tab List
       tab = {"title": title, "url": url, "content":"","child_tabs" :{}}
       open_tab.append(tab)
       print("Tab "+title+" Opened Successfully.")
+  # print the list to show tab added    
       print (open_tab)
    else:
       print("Try Again By Entering Letters Only NO Characters Not Empty. ")  
 #*****************************************************************************************
-def Close_Tab():
+#Close (Remove) a tab from a list 
+def Close_Tab():#O(n), where 'n' is the number of elements in the list
     
     
     print ("Enter An Index To Close, OtherWise Will Close the last opened tab.  ")
     index =input("Enter Here : ")
-    
+ # check if thier is tabs in list   
     if len(open_tab) > 0:
-        
+  # since no index enter the last tab open will close      
      if index == "":
         close_tabs = open_tab.pop() 
         print("Since No Index Enter The Last Tab Opened Will Closed : "+close_tabs['title'])
      else:
+   # closed the choosed tab      
        if 0 <= int(index) < len(open_tab) :
          close_tabs =  open_tab.pop(int(index))
          print ("Closed Tab IS" +close_tabs['title']+"At Index : " + index )
@@ -70,12 +73,13 @@ def Close_Tab():
 
    
 #******************************************************************************************
-def Display_All_Tabs():
+# display all titles and sub title in hierarchically way
+def Display_All_Tabs():# O(m*n)
     if len(open_tab) > 0:
-     for i in range(len(open_tab)):
+     for i in range(len(open_tab)):#O(n) n is length open_tab list
         tab =open_tab[i]
         print(str(i)+". "+tab['title'])
-        for j in range(len(tab['child_tabs'])):
+        for j in range(len(tab['child_tabs'])): #O(m) m is length child_tabs dicitionary
             tab_1=tab['child_tabs'][j]
             print(str(i)+"."+str(j)+". "+tab_1['title'])
     else:
