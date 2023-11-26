@@ -2,8 +2,16 @@ import json
 import os
 import requests 
 from bs4 import BeautifulSoup 
+from urllib.parse import urlparse
 
 open_tab=[]
+#****************************************************************************************
+def url_validator(x):
+    try:
+        result = urlparse(x)
+        return all([result.scheme, result.netloc])
+    except:
+        return False
 #****************************************************************************************
 #These function For SORT(FROM A TO Z)
 
@@ -33,11 +41,13 @@ def insertionSort(): #O(n^2)  n length of open_tab List
 def Open_New_Tab ():#O(n) n is length of open_tab List
     
    title = (input("Enter the Title of the website: ")).strip()
-   url = input("Enter the URL: ")
+   url = input("Enter the URLbe like (https://www.google.com): ")
    Is_String =title.isalpha()
-
-   if Is_String == True and url !="":
-     check_title = False   
+   valid_url = url_validator(url)
+   check_title = False 
+   
+   if Is_String == True and valid_url == True :
+       
      for tab in open_tab: #O(n) n is length of open_tab List
        if  tab["title"] == title :
           check_title = True
@@ -51,7 +61,8 @@ def Open_New_Tab ():#O(n) n is length of open_tab List
    
       print (open_tab)
    else:
-      print("Try Again By Entering Letters Only NO Characters Not Empty. ")  
+      print("Try Again, title : should be Letters Only NO Characters Not Empty will be Accepted. ") 
+      print("Also to be sure that the url be like these:(https://www.google.com) ")
 #*****************************************************************************************
 #Close (Remove) a tab from a list 
 # check if thier is tabs in list
@@ -110,13 +121,14 @@ def Open_Nested_Tab(): #O(1)
             tab = open_tab[parent_index]
             tab1 = tab['child_tabs']
             Is_String =title.isalpha()
-            
-            if Is_String ==True and url != "":    
+            valid_url = url_validator(url)
+            if Is_String ==True and valid_url == True:    
                 index_childtab = len(tab1)
                 open_tab[parent_index]['child_tabs'][index_childtab]=child
                 
             else:
-             print("Try Again By Entering Letters Only NO Characters Not Empty. ") 
+              print("Try Again, title : should be Letters Only NO Characters Not Empty will be Accepted. ") 
+              print("Also to be sure that the url be like these:(https://www.google.com) ") 
         else:
           print("Index Not Valid Please Try Again.")  
     else:
@@ -209,6 +221,7 @@ def Switch_Tab() : #O(n)n is the size of the HTML document.
 #use seek(0) to return curser to the begining in file
 #now get again the python format 
 #import again to open_tab list 
+#print the list
 def Import_Tab() : # O(1)
     
     file_path = input("Enter the file path (must be .txt) to import tabs from:")
@@ -228,6 +241,7 @@ def Import_Tab() : # O(1)
          print("File Not Found") 
     
 #****************************************************************************************
+#main menu to choose what user want to do
 def mainMenu():# O(n) number of times of user uses these program
   choice=-99 # dummy value
   while choice != '9':
