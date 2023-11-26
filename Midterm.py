@@ -1,3 +1,5 @@
+import json
+
 open_tab=[]
 #****************************************************************************************
 
@@ -31,7 +33,7 @@ def Open_New_Tab ():
      if check_title == True:
         print("Title ALready exist!! ") 
      else:   
-      tab = {"title": title, "url": url, "child_tabs" :{}}
+      tab = {"title": title, "url": url, "content":"","child_tabs" :{}}
       open_tab.append(tab)
       print("Tab "+title+" Opened Successfully.")
       print (open_tab)
@@ -98,7 +100,7 @@ def Sort_Tabs():
 #***************************************************************************************
 def Switch_Tab() :
     print ("Enter An Index of the tab to switch and display, OtherWise Will switch and display the last opened tab.  ")
-    index =input("Enter Here : ")
+    index =int(input("Enter Here : "))
     
     if len(open_tab) > 0:
        import requests 
@@ -114,7 +116,9 @@ def Switch_Tab() :
        tab =  open_tab[index]
        r = requests.get(tab['url'] )
        if r.status_code == 200:
-          print(BeautifulSoup(r.text, 'html.parser'))
+          x = BeautifulSoup(r.text, 'html.parser')
+          print(x)
+          open_tab[index]['content'] = x
        else:
           print("An Error occurred!")
           
@@ -153,7 +157,9 @@ def mainMenu():
         Open_Nested_Tab()
     
     if choice == '6' :
-        Sort_Tabs()    
+        Sort_Tabs() 
+    
+        
 
 
 mainMenu()    
