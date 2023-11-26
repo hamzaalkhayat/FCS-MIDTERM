@@ -96,7 +96,11 @@ def Display_All_Tabs():# O(m*n)
       print("Their Is No Tab Open")
       
 #*****************************************************************************************
-def Open_Nested_Tab():
+#Add child tabs for a parent tab 
+#check if parent tab exist
+#check that title is string 
+
+def Open_Nested_Tab(): #O(1)
     if len(open_tab) > 0:
         parent_index = int(input("Enter the index of the parent tab: "))
         if 0 <= parent_index < len(open_tab):
