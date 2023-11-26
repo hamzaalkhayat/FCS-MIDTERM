@@ -1,6 +1,7 @@
 open_tab=[]
 
 
+    
 def Open_New_Tab ():
     
     title = input("Enter the Title of the website: ")
@@ -75,6 +76,12 @@ def Open_Nested_Tab():
       print("Their Is No Tab Open")
     print (open_tab)
 #*****************************************************************************************
+
+def Sort_Tabs():
+    insertionSort()
+    print("Tabs Sorted successfully")
+
+#***************************************************************************************
 def Switch_Tab() :
     print ("Enter An Index of the tab to switch and display, OtherWise Will switch and display the last opened tab.  ")
     index =input("Enter Here : ")
@@ -117,18 +124,23 @@ def mainMenu():
     choice = input("Enter your choice: ")
     
     if choice == '1' :
-       Open_New_Tab ()
+        Open_New_Tab ()
        
     if choice == '2' :
-       Close_Tab()
+        Close_Tab()
    
     if choice == '3' :
-       Switch_Tab() 
+        Switch_Tab() 
        
     if choice == '4' :
-       Display_All_Tabs()
+        Display_All_Tabs()
     
     if choice == '5' :
         Open_Nested_Tab()
+    
+    if choice == '6' :
+        Sort_Tabs()    
+
+
 mainMenu()    
     
