@@ -1,7 +1,21 @@
 open_tab=[]
+#****************************************************************************************
 
-
+def insertionSort(): 
     
+  border=1
+  while border<len(open_tab): 
+    current=border 
+    while current>0 and open_tab[current]['title'].lower()<open_tab[current-1]['title'].lower(): 
+        
+       temp=open_tab[current]
+       open_tab[current]=open_tab[current-1]
+       open_tab[current-1]=temp
+      
+       current-=1
+    border+=1
+  print (open_tab)
+#**************************************************************************************** 
 def Open_New_Tab ():
     
     title = input("Enter the Title of the website: ")
