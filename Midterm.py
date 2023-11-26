@@ -159,7 +159,19 @@ def Switch_Tab() :
     else:
         print("Their Is No Tab Open")   
 
-
+#*****************************************************************************************
+def Import_Tab() :
+    
+    file_path = input("Enter the file path to import tabs from: ")
+    exist = os.path.exists(file_path)
+    if exist ==  True:
+       file = open(file_path, "r") 
+       print(file.read())
+       file.seek(0)
+       open_tab = json.load(file)
+       print (open_tab)
+    else:
+       print("File Not Found") 
     
 #****************************************************************************************
 def mainMenu():
@@ -202,7 +214,9 @@ def mainMenu():
     
     if choice == '8' :
         Import_Tab()    
-
+ 
+    if choice == '9' :
+        print("NOW WILL EXIST, GOODBYE!!!")  
 
 mainMenu()    
     
