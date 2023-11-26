@@ -5,12 +5,14 @@ from bs4 import BeautifulSoup
 from urllib.parse import urlparse
 
 open_tab=[]
+
 #****************************************************************************************
 #validat the url 
 #return true if url is correct
 #build it using stackoverflow
 #the website that get help from is
 #https://stackoverflow.com/questions/7160737/how-to-validate-a-url-in-python-malformed-or-not
+
 def url_validator(x):
     try:
         result = urlparse(x)
@@ -18,6 +20,7 @@ def url_validator(x):
     except:
         return False
 #****************************************************************************************
+
 #These function For SORT(FROM A TO Z)
 
 # print  open_tab list to show sorting tabs according to their titles
@@ -43,6 +46,7 @@ def insertionSort(): #O(n^2)  n length of open_tab List
 # check that title is string and no empty input will enter
 # check if title is exist before 
 # print the list to show tab added  
+
 def Open_New_Tab ():#O(n) n is length of open_tab List
     
    title = (input("Enter the Title of the website: ")).strip()
@@ -69,10 +73,12 @@ def Open_New_Tab ():#O(n) n is length of open_tab List
       print("Try Again, title : should be Letters Only NO Characters Not Empty will be Accepted. ") 
       print("Also to be sure that the url be like these:(https://www.google.com) ")
 #*****************************************************************************************
+
 #Close (Remove) a tab from a list 
 # check if thier is tabs in list
 # since no index enter the last tab open will close 
 # closed the choosed tab  
+
 def Close_Tab():#O(n), where 'n' is the number of elements in the list
     
     
@@ -88,7 +94,7 @@ def Close_Tab():#O(n), where 'n' is the number of elements in the list
        
        if 0 <= int(index) < len(open_tab) :
          close_tabs =  open_tab.pop(int(index))
-         print ("Closed Tab IS" +close_tabs['title']+"At Index : " + index )
+         print ("Closed Tab IS " +close_tabs['title']+" At Index : " + index )
        else:
          print("Index Not Valid Please Try Again.")
     
@@ -98,6 +104,7 @@ def Close_Tab():#O(n), where 'n' is the number of elements in the list
 
    
 #******************************************************************************************
+
 # display all titles and sub title in hierarchically way
 
 def Display_All_Tabs():# O(m*n)
@@ -112,6 +119,7 @@ def Display_All_Tabs():# O(m*n)
       print("Their Is No Tab Open")
       
 #*****************************************************************************************
+
 #Add child tabs for a parent tab 
 #check if parent tab exist
 #check that title is string 
@@ -140,8 +148,10 @@ def Open_Nested_Tab(): #O(1)
       print("Their Is No Tab Open")
     
 #*****************************************************************************************
+
 # check if their is tab in list
 #soret using insertionsort function according to titles of tab dictionaries in list 
+
 def Sort_Tabs(): #O(n^2) same as insertionSort function
     if len(open_tab) > 0: 
        insertionSort()
@@ -150,11 +160,13 @@ def Sort_Tabs(): #O(n^2) same as insertionSort function
       print("Their Is No Tab Open")   
 
 #***************************************************************************************
+
 # use jason format 
 #add new file or overwrite existing
 #using w3school and geeksforgeeks help
 # in wrtie the code for file and jason format
 # open file and add jason formet on it 
+
 def Save_Tab():#O(1)
     if len(open_tab) > 0: 
        print("\nEnter:")
@@ -188,11 +200,13 @@ def Save_Tab():#O(1)
       print("Their Is No Tab Open") 
     
 #***************************************************************************************
+
 #check if tab is not empty
 #disply the content which is html code for url
 #using web scraping
 #https://www.geeksforgeeks.org/extract-all-the-urls-from-the-webpage-using-python/
 #using these website i used beutifulsoup and get learned
+
 def Switch_Tab() : #O(n)n is the size of the HTML document.
     print ("Enter An Index of the tab to switch and display, OtherWise Will switch and display the last opened tab.  ")
     index =int(input("Enter Here : "))
@@ -220,6 +234,7 @@ def Switch_Tab() : #O(n)n is the size of the HTML document.
         print("Their Is No Tab Open")   
 
 #*****************************************************************************************
+
 #also using w3school and geeksforgeeks get help
 #open file and read from it
 #print jason format in the file
@@ -227,6 +242,7 @@ def Switch_Tab() : #O(n)n is the size of the HTML document.
 #now get again the python format 
 #import again to open_tab list 
 #print the list
+
 def Import_Tab() : # O(1)
     
     file_path = input("Enter the file path (must be .txt) to import tabs from:")
@@ -246,7 +262,9 @@ def Import_Tab() : # O(1)
          print("File Not Found") 
     
 #****************************************************************************************
+
 #main menu to choose what user want to do
+
 def mainMenu():# O(n) number of times of user uses these program
   choice=-99 # dummy value
   while choice != '9':

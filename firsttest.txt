@@ -1,0 +1,42 @@
+[
+  {
+    "title": "google",
+    "url": "https://www.google.com",
+    "content": "",
+    "child_tabs": {}
+  },
+  {
+    "title": "facebook",
+    "url": "https://www.facebook.com",
+    "content": "",
+    "child_tabs": {}
+  },
+  {
+    "title": "kooora",
+    "url": "https://www.kooora.com",
+    "content": "",
+    "child_tabs": {
+      "0": {
+        "title": "signin",
+        "url": "https://www.koora.com/signin"
+      }
+    }
+  },
+  {
+    "title": "apple",
+    "url": "https://www.apple.com",
+    "content": "",
+    "child_tabs": {}
+  },
+  {
+    "title": "goal",
+    "url": "https://www.goal.com",
+    "content": "",
+    "child_tabs": {
+      "0": {
+        "title": "signup",
+        "url": "https://www.goal.com"
+      }
+    }
+  }
+]
