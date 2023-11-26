@@ -112,13 +112,17 @@ def Sort_Tabs():
 #***************************************************************************************
 def Save_Tab():
     if len(open_tab) > 0: 
-        print("\nEnter:")
-        print("1. Add a New File. ")
-        print("2. OverWrite On Existing File.")
-        answer = (input("Your choice: "))  
-        file_path = input("Enter the file path to Save tabs from: ")
+       print("\nEnter:")
+       print("1. Add a New File. ")
+       print("2. OverWrite On Existing File.")
+       answer = (input("Your choice: "))  
         
-        exist = os.path.exists(file_path)
+       file_path = input("Enter the file path (must be .txt)to Save tabs from:")
+       if file_path == "":
+           print("File Path Is Empty Please Try Again")
+           
+       else: 
+        exist = os.path.exists(file_path)   
         if answer == '1':
            if exist == False:
               f = open(file_path, "x") 
@@ -168,16 +172,21 @@ def Switch_Tab() :
 #*****************************************************************************************
 def Import_Tab() :
     
-    file_path = input("Enter the file path to import tabs from: ")
-    exist = os.path.exists(file_path)
-    if exist ==  True:
-       file = open(file_path, "r") 
-       print(file.read())
-       file.seek(0)
-       open_tab = json.load(file)
-       print (open_tab)
+    file_path = input("Enter the file path (must be .txt) to import tabs from:")
+    
+    if file_path == "":
+       print("File Path Is Empty Please Try Again")
+       
     else:
-       print("File Not Found") 
+       exist = os.path.exists(file_path)
+       if exist ==  True:
+         file = open(file_path, "r") 
+         print(file.read())
+         file.seek(0)
+         open_tab = json.load(file)
+         print (open_tab)
+       else:
+         print("File Not Found") 
     
 #****************************************************************************************
 def mainMenu():
