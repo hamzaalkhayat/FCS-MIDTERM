@@ -110,7 +110,7 @@ def Save_Tab():
         print("1. Add a New File. ")
         print("2. OverWrite On Existing File.")
         answer = (input("Your choice: "))  
-        file_path = input("Enter the file path to import tabs from: ")
+        file_path = input("Enter the file path to Save tabs from: ")
         
         exist = os.path.exists(file_path)
         if answer == '1':
@@ -158,6 +158,22 @@ def Switch_Tab() :
           
     else:
         print("Their Is No Tab Open")   
+
+#*****************************************************************************************
+def Import_Tab() :
+    
+    file_path = input("Enter the file path to import tabs from: ")
+    exist = os.path.exists(file_path)
+    if exist ==  True:
+       file = open(file_path, "r") 
+       print(file.read())
+       file.seek(0)
+       open_tab = json.load(file)
+       print (open_tab)
+    else:
+       print("File Not Found") 
+    
+#****************************************************************************************
 def mainMenu():
   choice=-99 # dummy value
   while choice != '9':
@@ -195,6 +211,9 @@ def mainMenu():
     
     if choice == '7' :
         Save_Tab()
+    
+    if choice == '8' :
+        Import_Tab()    
 
 
 mainMenu()    
