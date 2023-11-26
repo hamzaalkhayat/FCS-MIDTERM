@@ -23,12 +23,11 @@ def insertionSort():
 #**************************************************************************************** 
 def Open_New_Tab ():
     
-    title = input("Enter the Title of the website: ")
-    url = input("Enter the URL: ")
-   
-    if title == "" or url == "":
-       print("Title OR Url is Empty Please Try Again ") 
-    else:
+   title = (input("Enter the Title of the website: ")).strip()
+   url = input("Enter the URL: ")
+   Is_String =title.isalpha()
+    
+   if Is_String == True and url !="":
      check_title = False   
      for tab in open_tab:
        if  tab["title"] == title :
@@ -40,7 +39,8 @@ def Open_New_Tab ():
       open_tab.append(tab)
       print("Tab "+title+" Opened Successfully.")
       print (open_tab)
-
+   else:
+      print("Try Again By Entering Letters Only NO Characters Not Empty. ")  
 #*****************************************************************************************
 def Close_Tab():
     
@@ -82,13 +82,19 @@ def Open_Nested_Tab():
     if len(open_tab) > 0:
         parent_index = int(input("Enter the index of the parent tab: "))
         if 0 <= parent_index < len(open_tab):
-            title = input("Enter the Title of the website: ")
+            title = (input("Enter the Title of the website: ")).strip()
             url = input("Enter the URL: ") 
             child={"title": title, "url": url}
             tab = open_tab[parent_index]
             tab1 = tab['child_tabs']
-            index_childtab = len(tab1)
-            open_tab[parent_index]['child_tabs'][index_childtab]=child
+            Is_String =title.isalpha()
+            
+            if Is_String ==True and url != "":    
+                index_childtab = len(tab1)
+                open_tab[parent_index]['child_tabs'][index_childtab]=child
+                
+            else:
+             print("Try Again By Entering Letters Only NO Characters Not Empty. ") 
         else:
           print("Index Not Valid Please Try Again.")  
     else:
