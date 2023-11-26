@@ -209,7 +209,7 @@ def Save_Tab():#O(1)
 
 def Switch_Tab() : #O(n)n is the size of the HTML document.
     print ("Enter An Index of the tab to switch and display, OtherWise Will switch and display the last opened tab.  ")
-    index =int(input("Enter Here : "))
+    index =input("Enter Here : ")
     
     if len(open_tab) > 0:
       
@@ -217,7 +217,7 @@ def Switch_Tab() : #O(n)n is the size of the HTML document.
           index = len(open_tab) - 1 
        else:
           if 0 <= int(index) < len(open_tab) :
-             index=  index
+             index= int(index)
           else:
              print("Index Not Valid Please Try Again.")    
       
