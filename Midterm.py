@@ -6,6 +6,8 @@ from bs4 import BeautifulSoup
 open_tab=[]
 #****************************************************************************************
 #These function For SORT(FROM A TO Z)
+
+# print  open_tab list to show sorting tabs according to their titles
 def insertionSort(): #O(n^2)  n length of open_tab List
     
   border=1
@@ -19,48 +21,55 @@ def insertionSort(): #O(n^2)  n length of open_tab List
       
        current-=1
     border+=1
-# print  open_tab list to show sorting tabs according to their titles   
+   
   print (open_tab)
 #****************************************************************************************
 
-# These function to add new tab to list 
+# These function to add new tab to list
+# title should be string and url be like (https://www.google.com) 
+# check that title is string and no empty input will enter
+# check if title is exist before 
+# print the list to show tab added  
 def Open_New_Tab ():#O(n) n is length of open_tab List
- # title should be string and url be like (https://www.google.com)   
+    
    title = (input("Enter the Title of the website: ")).strip()
    url = input("Enter the URL: ")
    Is_String =title.isalpha()
-# check that title is string and no empty input will enter
+
    if Is_String == True and url !="":
      check_title = False   
      for tab in open_tab: #O(n) n is length of open_tab List
        if  tab["title"] == title :
           check_title = True
- # check if title is exist before         
+         
      if check_title == True:
         print("Title ALready exist!! ") 
      else:   
       tab = {"title": title, "url": url, "content":"","child_tabs" :{}}
       open_tab.append(tab)
       print("Tab "+title+" Opened Successfully.")
-  # print the list to show tab added    
+   
       print (open_tab)
    else:
       print("Try Again By Entering Letters Only NO Characters Not Empty. ")  
 #*****************************************************************************************
 #Close (Remove) a tab from a list 
+# check if thier is tabs in list
+# since no index enter the last tab open will close 
+# closed the choosed tab  
 def Close_Tab():#O(n), where 'n' is the number of elements in the list
     
     
     print ("Enter An Index To Close, OtherWise Will Close the last opened tab.  ")
     index =input("Enter Here : ")
- # check if thier is tabs in list   
+  
     if len(open_tab) > 0:
-  # since no index enter the last tab open will close      
+       
      if index == "":
         close_tabs = open_tab.pop() 
         print("Since No Index Enter The Last Tab Opened Will Closed : "+close_tabs['title'])
      else:
-   # closed the choosed tab      
+       
        if 0 <= int(index) < len(open_tab) :
          close_tabs =  open_tab.pop(int(index))
          print ("Closed Tab IS" +close_tabs['title']+"At Index : " + index )
@@ -74,6 +83,7 @@ def Close_Tab():#O(n), where 'n' is the number of elements in the list
    
 #******************************************************************************************
 # display all titles and sub title in hierarchically way
+
 def Display_All_Tabs():# O(m*n)
     if len(open_tab) > 0:
      for i in range(len(open_tab)):#O(n) n is length open_tab list
@@ -151,7 +161,12 @@ def Save_Tab():
       print("Their Is No Tab Open") 
     
 #***************************************************************************************
-def Switch_Tab() :
+#check if tab is not empty
+#disply the content which is html code for url
+#using web scraping
+#https://www.geeksforgeeks.org/extract-all-the-urls-from-the-webpage-using-python/
+#using these website i used beutifulsoup and get learned
+def Switch_Tab() : #O(n)n is the size of the HTML document.
     print ("Enter An Index of the tab to switch and display, OtherWise Will switch and display the last opened tab.  ")
     index =int(input("Enter Here : "))
     
@@ -168,7 +183,7 @@ def Switch_Tab() :
        tab =  open_tab[index]
        r = requests.get(tab['url'] )
        if r.status_code == 200:
-          x = BeautifulSoup(r.text, 'html.parser')
+          x = BeautifulSoup(r.text, 'html.parser') #O(n)n is the size of the HTML document.
           print(x)
           open_tab[index]['content'] = str(x)
        else:
