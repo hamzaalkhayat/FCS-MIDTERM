@@ -23,7 +23,7 @@ def insertionSort(): #O(n^2)  n length of open_tab List
   print (open_tab)
 #****************************************************************************************
 
-# These function to add new tab to lis 
+# These function to add new tab to list 
 def Open_New_Tab ():#O(n) n is length of open_tab List
     
    title = (input("Enter the Title of the website: ")).strip()
@@ -35,6 +35,7 @@ def Open_New_Tab ():#O(n) n is length of open_tab List
      for tab in open_tab: #O(n) n is length of open_tab List
        if  tab["title"] == title :
           check_title = True
+ # check if title is exist before         
      if check_title == True:
         print("Title ALready exist!! ") 
      else:   
