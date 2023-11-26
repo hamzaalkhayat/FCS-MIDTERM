@@ -21,16 +21,18 @@ def insertionSort(): #O(n^2)  n length of open_tab List
     border+=1
 # print  open_tab list to show sorting tabs according to their titles   
   print (open_tab)
-#**************************************************************************************** 
-def Open_New_Tab ():
+#****************************************************************************************
+
+# These function to add new tab to lis 
+def Open_New_Tab ():#O(n) n is length of open_tab List
     
    title = (input("Enter the Title of the website: ")).strip()
    url = input("Enter the URL: ")
    Is_String =title.isalpha()
-    
+# check that title is string and no empty input will enter
    if Is_String == True and url !="":
      check_title = False   
-     for tab in open_tab:
+     for tab in open_tab: #O(n) n is length of open_tab List
        if  tab["title"] == title :
           check_title = True
      if check_title == True:
