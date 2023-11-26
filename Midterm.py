@@ -6,6 +6,11 @@ from urllib.parse import urlparse
 
 open_tab=[]
 #****************************************************************************************
+#validat the url 
+#return true if url is correct
+#build it using stackoverflow
+#the website that get help from is
+#https://stackoverflow.com/questions/7160737/how-to-validate-a-url-in-python-malformed-or-not
 def url_validator(x):
     try:
         result = urlparse(x)
