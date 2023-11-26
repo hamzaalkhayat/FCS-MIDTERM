@@ -133,7 +133,12 @@ def Sort_Tabs(): #O(n^2) same as insertionSort function
       print("Their Is No Tab Open")   
 
 #***************************************************************************************
-def Save_Tab():
+# use jason format 
+#add new file or overwrite existing
+#using w3school and geeksforgeeks help
+# in wrtie the code for file and jason format
+# open file and add jason formet on it 
+def Save_Tab():#O(1)
     if len(open_tab) > 0: 
        print("\nEnter:")
        print("1. Add a New File. ")
