@@ -5,20 +5,21 @@ from bs4 import BeautifulSoup
 
 open_tab=[]
 #****************************************************************************************
-
-def insertionSort(): 
+#These function For SORT(FROM A TO Z)
+def insertionSort(): #O(n^2)  n length of open_tab List
     
   border=1
-  while border<len(open_tab): 
+  while border<len(open_tab): # O(n) n length of open_tab List
     current=border 
-    while current>0 and open_tab[current]['title'].lower()<open_tab[current-1]['title'].lower(): 
+    while current>0 and open_tab[current]['title'].lower()<open_tab[current-1]['title'].lower(): # O(n) n length of open_tab List
         
-       temp=open_tab[current]
-       open_tab[current]=open_tab[current-1]
-       open_tab[current-1]=temp
+       temp=open_tab[current] #O(1)
+       open_tab[current]=open_tab[current-1] #O(1)
+       open_tab[current-1]=temp   #O(1)
       
        current-=1
     border+=1
+# print  open_tab list to show sorting tabs according to their titles   
   print (open_tab)
 #**************************************************************************************** 
 def Open_New_Tab ():
