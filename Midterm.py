@@ -1,4 +1,7 @@
 import json
+import os
+import requests 
+from bs4 import BeautifulSoup 
 
 open_tab=[]
 #****************************************************************************************
@@ -90,21 +93,52 @@ def Open_Nested_Tab():
           print("Index Not Valid Please Try Again.")  
     else:
       print("Their Is No Tab Open")
-    print (open_tab)
+    
 #*****************************************************************************************
 
 def Sort_Tabs():
-    insertionSort()
-    print("Tabs Sorted successfully")
+    if len(open_tab) > 0: 
+       insertionSort()
+       print("Tabs Sorted successfully")
+    else:
+      print("Their Is No Tab Open")   
 
+#***************************************************************************************
+def Save_Tab():
+    if len(open_tab) > 0: 
+        print("\nEnter:")
+        print("1. Add a New File. ")
+        print("2. OverWrite On Existing File.")
+        answer = (input("Your choice: "))  
+        file_path = input("Enter the file path to import tabs from: ")
+        
+        exist = os.path.exists(file_path)
+        if answer == '1':
+           if exist == False:
+              f = open(file_path, "x") 
+              json.dump(open_tab, f, indent = 2)
+              f.close()
+           else:
+              print("You Choose Add New File And The File Is Exist Please Try Again.") 
+        elif answer == '2':
+            if exist == True:
+               f = open(file_path, "w")
+               json.dump(open_tab, f, indent = 2)
+               f.close()
+            else:
+               print("You Choose OverWrite An Existing File And The File Is Not Found Please Try Again.")   
+        else:
+          print("Please Try Again And Choose A Chioce Between 1 or 2 Only!! ")  
+    else:
+      print("Their Is No Tab Open") 
+    
 #***************************************************************************************
 def Switch_Tab() :
     print ("Enter An Index of the tab to switch and display, OtherWise Will switch and display the last opened tab.  ")
     index =int(input("Enter Here : "))
     
     if len(open_tab) > 0:
-       import requests 
-       from bs4 import BeautifulSoup 
+      
        if index == "":
           index = len(open_tab) - 1 
        else:
@@ -118,7 +152,7 @@ def Switch_Tab() :
        if r.status_code == 200:
           x = BeautifulSoup(r.text, 'html.parser')
           print(x)
-          open_tab[index]['content'] = x
+          open_tab[index]['content'] = str(x)
        else:
           print("An Error occurred!")
           
@@ -159,7 +193,8 @@ def mainMenu():
     if choice == '6' :
         Sort_Tabs() 
     
-        
+    if choice == '7' :
+        Save_Tab()
 
 
 mainMenu()    
