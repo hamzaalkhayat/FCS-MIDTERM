@@ -16,10 +16,10 @@ def Open_New_Tab ():
      if check_title == True:
         print("Title ALready exist!! ") 
      else:   
-      tab = {"title": title, "url": url, "nested_tabs": []}
+      tab = {"title": title, "url": url, "child_tabs" :{}}
       open_tab.append(tab)
       print("Tab "+title+" Opened Successfully.")
-  
+      print (open_tab)
 
 #*****************************************************************************************
 def Close_Tab():
@@ -46,9 +46,21 @@ def Close_Tab():
 
    
 #******************************************************************************************
+def Display_All_Tabs():
+    if len(open_tab) > 0:
+     for i in range(len(open_tab)):
+        tab =open_tab[i]
+        print(str(i)+". "+tab['title'])
+        for j in range(len(tab['child_tabs'])):
+            tab_1=tab['child_tabs'][j]
+            print(str(i)+"."+str(j)+". "+tab_1['title'])
+    else:
+      print("Their Is No Tab Open")
+      
+#*****************************************************************************************
 
 def Switch_Tab() :
-    print ("Enter An Index To of the tab to switch and display, OtherWise Will switch and display the last opened tab.  ")
+    print ("Enter An Index of the tab to switch and display, OtherWise Will switch and display the last opened tab.  ")
     index =input("Enter Here : ")
     
     if len(open_tab) > 0:
@@ -60,7 +72,7 @@ def Switch_Tab() :
           if 0 <= int(index) < len(open_tab) :
              index=  index
           else:
-           print("Index Not Valid Please Try Again.")    
+             print("Index Not Valid Please Try Again.")    
       
        tab =  open_tab[index]
        r = requests.get(tab['url'] )
@@ -93,7 +105,14 @@ def mainMenu():
        
     if choice == '2' :
        Close_Tab()
+   
     if choice == '3' :
        Switch_Tab() 
+       
+    if choice == '4' :
+       Display_All_Tabs()
+    
+    if choice == '5' :
+        Open_Nested_Tab()
 mainMenu()    
     
