@@ -58,7 +58,23 @@ def Display_All_Tabs():
       print("Their Is No Tab Open")
       
 #*****************************************************************************************
-
+def Open_Nested_Tab():
+    if len(open_tab) > 0:
+        parent_index = int(input("Enter the index of the parent tab: "))
+        if 0 <= parent_index < len(open_tab):
+            title = input("Enter the Title of the website: ")
+            url = input("Enter the URL: ") 
+            child={"title": title, "url": url}
+            tab = open_tab[parent_index]
+            tab1 = tab['child_tabs']
+            index_childtab = len(tab1)
+            open_tab[parent_index]['child_tabs'][index_childtab]=child
+        else:
+          print("Index Not Valid Please Try Again.")  
+    else:
+      print("Their Is No Tab Open")
+    print (open_tab)
+#*****************************************************************************************
 def Switch_Tab() :
     print ("Enter An Index of the tab to switch and display, OtherWise Will switch and display the last opened tab.  ")
     index =input("Enter Here : ")
