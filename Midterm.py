@@ -123,8 +123,9 @@ def Open_Nested_Tab(): #O(1)
       print("Their Is No Tab Open")
     
 #*****************************************************************************************
-
-def Sort_Tabs():
+# check if their is tab in list
+#soret using insertionsort function according to titles of tab dictionaries in list 
+def Sort_Tabs(): #O(n^2) same as insertionSort function
     if len(open_tab) > 0: 
        insertionSort()
        print("Tabs Sorted successfully")
