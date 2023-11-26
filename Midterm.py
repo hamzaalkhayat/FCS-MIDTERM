@@ -203,7 +203,13 @@ def Switch_Tab() : #O(n)n is the size of the HTML document.
         print("Their Is No Tab Open")   
 
 #*****************************************************************************************
-def Import_Tab() :
+#also using w3school and geeksforgeeks get help
+#open file and read from it
+#print jason format in the file
+#use seek(0) to return curser to the begining in file
+#now get again the python format 
+#import again to open_tab list 
+def Import_Tab() : # O(1)
     
     file_path = input("Enter the file path (must be .txt) to import tabs from:")
     
